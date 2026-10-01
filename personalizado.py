@@ -1,12 +1,12 @@
 # =====================================================================
-#             SISTEMA DE GESTIÓN BÁSICA DE PRODUCTOS (PREENTREGA)
+#                      GESTIÓN DE PRODUCTOS
 # =====================================================================
 
 productos = []
 opcion = ""
 
 while opcion != "5":
-    print("\n========== SISTEMA DE GESTIÓN BÁSICA DE PRODUCTOS ==========")
+    print("\n================== GESTIÓN DE PRODUCTOS =================")
     print("1. Agregar producto")
     print("2. Mostrar productos")
     print("3. Buscar producto")
@@ -20,7 +20,7 @@ while opcion != "5":
     if opcion == "1":
         print("\n--- Agregar Producto ---")
         
-        # Validar Nombre
+        # Validar nombre
         nombre = input("Ingresa el nombre del producto: ").strip()
         while nombre == "":
             print("El nombre no puede estar vacío.")
@@ -32,7 +32,7 @@ while opcion != "5":
             print("La categoría no puede estar vacía.")
             categoria = input("Ingresa la categoría del producto: ").strip()
             
-        # Validar Precio (sin centavos, entero > 0)
+        # Validar Precio (sin centavos > 0)
         precio = input("Ingresa el precio (sin centavos): ").strip()
         while not precio.isdigit() or int(precio) <= 0:
             print("El precio debe ser un número entero mayor a 0.")
@@ -67,7 +67,7 @@ while opcion != "5":
                 
             encontrados = 0
             for producto in productos:
-                # Búsqueda flexible ignorando mayúsculas/minúsculas
+                # Búsqueda ignorando mayúsculas/minúsculas
                 if busqueda.lower() in producto[0].lower():
                     print(f"- Nombre: {producto[0]} | Categoría: {producto[1]} | Precio: ${producto[2]}")
                     encontrados += 1
@@ -83,19 +83,19 @@ while opcion != "5":
         if len(productos) == 0:
             print("No hay productos registrados para eliminar.")
         else:
-            # Mostramos primero la lista numerada
+            # Mostrar la lista numerada
             numero = 1
             for producto in productos:
                 print(f"{numero}. Nombre: {producto[0]} | Categoría: {producto[1]} | Precio: ${producto[2]}")
                 numero += 1
                 
             posicion = input("Ingresa el número del producto a eliminar: ").strip()
-            # Validación de rango y tipo numérico
+            # Validar de rango y tipo numérico
             while not posicion.isdigit() or int(posicion) < 1 or int(posicion) > len(productos):
                 print(f"Número inválido. Ingresa un número entre 1 y {len(productos)}.")
                 posicion = input("Ingresa el número del producto a eliminar: ").strip()
                 
-            # Convertimos la posición numerada al índice de la lista (sustraemos 1)
+            # Convertir la posición numerada al índice de la lista (sustraemos 1)
             eliminado = productos.pop(int(posicion) - 1)
             print(f"¡El producto '{eliminado[0]}' fue eliminado correctamente!")
             
